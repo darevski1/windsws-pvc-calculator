@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <title>PVC CALCULATOR</title>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                <ul>
+                    <li>
+                        <h1 class="title">
+                    </li>
+                    <li>
+                        <div id="size"></div>
+                    </li>
+                    <li>
+                        <div id="sumsize"></div>
+                    </li>
+                    <li>
+                        <div id="totalprice"></div>
+                    </li>
+                    <li>
+                        <div id="sumGl"></div>
+                    </li>
+                    <li>
+                        <div id="totalPriceWhithGlass"></div>
+                    </li>
+                </ul>
+
+
+
+
+                    </h1>
+
+                    <form action="">
+                        <div class="field">
+                            <div class="control">
+                                <label for="sirina">Внеси Ширина</label>
+                                <input class="input is-danger" id="width" type="text"
+                                    placeholder="Внеси ширина пример: 1.4">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label for="sirina">Внеси висина</label>
+                                <input class="input is-danger" id="height" type="text"
+                                    placeholder="Внеси висина пример: 1.4">
+                            </div>
+                        </div>
+                        <button type="button" class="button is-success is-large" onclick="getSize()">Едно Крилен</button>
+                        <button type="button" class="button is-primary is-large" onclick="getSize2()">Дво Крилен</button>
+                        <button type="ресет" class="button is-danger is-large">Ресет</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+
+
+        function getSize() {
+            var inputWidth = document.getElementById('width').value;
+            var inputHeight = document.getElementById('height').value;
+
+            if (isNaN(inputWidth) || isNaN(inputHeight)) {
+                document.getElementById("size").innerHTML = "Внеси валидни броеви Пр: 1.4 / 1.4";
+            } else {
+
+                calTwo(inputWidth, inputHeight);
+
+            }
+        }
+        function getSize2() {
+
+            var inputWidth = document.getElementById('width').value;
+            var inputHeight = document.getElementById('height').value;
+
+            if (isNaN(inputWidth) || isNaN(inputHeight)) {
+                document.getElementById("size").innerHTML = "Внеси валидни броеви Пр: 1.4 / 1.4";
+            } else {
+
+                calThree(inputWidth, inputHeight);
+
+            }
+
+
+        }
+
+        function calTwo(inputWidth, inputHeight) {
+            // metri na profil
+            sum = (inputWidth * 4) + (inputWidth * 4);
+            // metri kvadratni za staklo 
+            sumGlass = inputWidth * inputWidth;
+            // cena na staklo 
+            priceGlass = sumGlass * 17; 
+            // profil so staklo vkupno
+           
+
+            document.getElementById("size").innerHTML = "Ширина на прозор/врата " + inputWidth + "<br />" + " Висина на прозор/врата " + inputHeight;
+            document.getElementById("sumsize").innerHTML = "Вкупно метри на профил: " + Math.ceil(sum);
+            document.getElementById("sumGl").innerHTML = "Вкупно метри квадратни стакло: " + Math.ceil(sumGlass) + " * " + " 17" + " = " + Math.ceil (priceGlass);
+
+            calcPrice();
+        }
+
+        function calThree(inputWidth, inputHeight) {
+            let sum = (inputWidth * 7) + (inputHeight * 4);
+            document.getElementById("size").innerHTML = "Ширина на прозор/врата " + inputWidth + "<br />" + " Висина на прозор/врата" + inputHeight;
+            document.getElementById("sumsize").innerHTML = "Вкупно метри на профил: " + Math.ceil(sum);
+
+        }
+
+        // funckija za presmetka na cena
+        function calcPrice() {
+            let price = 9;
+            let calcsum = price * sum;
+            totalpricWithGlass = calcsum + priceGlass;
+            document.getElementById("totalprice").innerHTML = "Цена " + Math.ceil(calcsum) + " Евра";
+            document.getElementById("totalPriceWhithGlass").innerHTML = "Вкупно цена: " + Math.ceil (totalpricWithGlass) + " Евра";
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
